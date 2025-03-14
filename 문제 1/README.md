@@ -252,3 +252,20 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 })
 export class AppModule {}
 ```
+3. helmet 사용
+
+```jsx
+
+# main.ts 에서 사용
+import helmet from 'helmet'
+
+
+app.use(helmet({ crossOriginResourcePolicy: { policy: "same-site" } }));
+app.use(helmet.noSniff());
+app.use(helmet.xssFilter());
+
+1. 리소스가 같은 사이트에서만 로드되도록 제한하여 CORS(Cross-Origin Resource Sharing) 관련 보안을 강화합니다.
+2. 브라우저가 MIME 타입을 추측(스니핑)하지 못하게 하여 MIME 타입 관련 보안 취약점을 방지합니다.
+3. 브라우저의 내장 XSS(Cross-Site Scripting) 필터를 활성화하여 XSS 공격을 방어합니다.
+
+```
