@@ -1,7 +1,4 @@
-import {
-  ConflictException,
-  Injectable
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
@@ -26,8 +23,6 @@ export class UsersService {
     if (existingUser) {
       throw new ConflictException('Email already exists');
     }
-
-    // 🔹 `password`와 `email` 검증 제거 → DTO 및 ValidationPipe에서 처리
     // 비밀번호 해싱
     const hashedPassword = await bcrypt.hash(password, 10);
 
